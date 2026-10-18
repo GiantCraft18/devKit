@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b16">
+  <meta name="description" content="DevKit — бесплатные инструменты разработчика: JSON, цвета, форматирование кода, пароли, Base64 и QR-коды.">
+  <title>DevKit — Developer Toolkit</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script defer src="assets/app.js"></script>
+  <!-- QR generation uses a small open-source library from CDN; all other tools work offline after download. -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="DevKit home"><span class="brand-mark">D<span>K</span></span><span>Dev<span class="accent">Kit</span><small>DEVELOPER TOOLKIT</small></span></a>
+    <div class="top-actions">
+      <span class="local-pill"><i></i><span data-i18n="localBadge">Работает в браузере</span></span>
+      <button id="langToggle" class="ghost-btn" type="button" aria-label="Change language">EN</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="side-heading" data-i18n="workspace">РАБОЧЕЕ ПРОСТРАНСТВО</div>
+      <nav id="toolNav" class="tool-nav" aria-label="Tools">
+        <button class="nav-item active" data-tool="json" type="button"><span class="nav-icon">{ }</span><span data-i18n="navJson">JSON Studio</span><kbd>01</kbd></button>
+        <button class="nav-item" data-tool="colors" type="button"><span class="nav-icon">◉</span><span data-i18n="navColors">Color Lab</span><kbd>02</kbd></button>
+        <button class="nav-item" data-tool="format" type="button"><span class="nav-icon">&lt;/&gt;</span><span data-i18n="navFormat">Code Formatter</span><kbd>03</kbd></button>
+        <button class="nav-item" data-tool="password" type="button"><span class="nav-icon">✳</span><span data-i18n="navPassword">Password Lab</span><kbd>04</kbd></button>
+        <button class="nav-item" data-tool="base64" type="button"><span class="nav-icon">⇄</span><span data-i18n="navBase64">Base64 Studio</span><kbd>05</kbd></button>
+        <button class="nav-item" data-tool="qr" type="button"><span class="nav-icon">▦</span><span data-i18n="navQr">QR Generator</span><kbd>06</kbd></button>
+      </nav>
+      <div class="sidebar-note"><span class="pulse"></span><div><strong data-i18n="privateTitle">Локальная обработка</strong><p data-i18n="privateText">Ваш текст не отправляется на сервер.</p></div></div>
+      <div class="sidebar-footer">DEVKIT <span>v1.0.0</span></div>
+    </aside>
+
+    <section class="content">
+      <div class="welcome-row">
+        <div><div class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="eyebrow">ИНСТРУМЕНТЫ ДЛЯ РАЗРАБОТЧИКОВ</span></div><h1 data-i18n="headline">Меньше рутины.<br><span>Больше кода.</span></h1><p class="subtitle" data-i18n="subtitle">Шесть полезных инструментов. Один рабочий стол. Без регистрации и лишних шагов.</p></div>
+        <div class="hero-orb" aria-hidden="true"><div class="orb-ring ring-one"></div><div class="orb-ring ring-two"></div><div class="orb-core">DK<span>_</span></div><div class="orb-dot dot-one"></div><div class="orb-dot dot-two"></div></div>
+      </div>
+
+      <div class="tool-heading"><div><span class="section-kicker" data-i18n="activeTool">АКТИВНЫЙ ИНСТРУМЕНТ</span><h2 id="toolTitle">JSON Studio</h2></div><span class="tool-status"><span></span><span data-i18n="ready">ГОТОВ К РАБОТЕ</span></span></div>
+
+      <!-- JSON -->
+      <section class="tool-panel active" id="panel-json" data-panel="json">
+        <div class="panel-intro"><div><h3 data-i18n="jsonTitle">Проверка и форматирование JSON</h3><p data-i18n="jsonDesc">Проверьте синтаксис, сделайте структуру читаемой или сожмите её.</p></div><span class="chip">JSON</span></div>
+        <label for="jsonInput" data-i18n="inputJson">ВХОДНЫЕ ДАННЫЕ</label>
+        <textarea id="jsonInput" class="code-area" spellcheck="false" data-i18n-placeholder="jsonPlaceholder" placeholder='{"name":"DevKit","active":true,"tools":["json","colors"]}'></textarea>
+        <div class="button-row"><button class="primary-btn" id="jsonPretty" type="button" data-i18n="pretty">Форматировать</button><button class="secondary-btn" id="jsonMinify" type="button" data-i18n="minify">Сжать</button><button class="secondary-btn" id="jsonValidate" type="button" data-i18n="validate">Проверить</button><button class="text-btn" id="jsonClear" type="button" data-i18n="clear">Очистить</button></div>
+        <div id="jsonStatus" class="status-box" aria-live="polite"></div>
+        <label for="jsonOutput" data-i18n="result">РЕЗУЛЬТАТ</label><textarea id="jsonOutput" class="code-area output-area" spellcheck="false" readonly></textarea>
+        <div class="button-row"><button class="secondary-btn" id="jsonCopy" type="button" data-i18n="copyResult">Копировать результат</button></div>
+      </section>
+
+      <!-- Colors -->
+      <section class="tool-panel" id="panel-colors" data-panel="colors">
+        <div class="panel-intro"><div><h3 data-i18n="colorsTitle">Цветовая лаборатория</h3><p data-i18n="colorsDesc">Подберите цвет, скопируйте значения и создайте CSS-градиент.</p></div><span class="chip">CSS</span></div>
+        <div class="color-layout">
+          <div class="color-preview" id="colorPreview"><span data-i18n="livePreview">ПРЕДПРОСМОТР</span><strong id="hexLarge">#6C63FF</strong></div>
+          <div class="color-controls"><label for="colorPicker" data-i18n="chooseColor">ВЫБРАТЬ ЦВЕТ</label><div class="color-picker-row"><input id="colorPicker" type="color" value="#6c63ff"><input id="hexInput" class="text-input mono" value="#6C63FF" maxlength="7" aria-label="HEX color"></div><div class="value-grid"><div><label>RGB</label><div class="value-copy"><code id="rgbValue">108, 99, 255</code><button data-copy-target="rgbValue" class="mini-copy" type="button" aria-label="Copy RGB">⧉</button></div></div><div><label>HSL</label><div class="value-copy"><code id="hslValue">243, 100%, 69%</code><button data-copy-target="hslValue" class="mini-copy" type="button" aria-label="Copy HSL">⧉</button></div></div></div><button id="copyHex" class="secondary-btn full-btn" type="button" data-i18n="copyHex">Копировать HEX</button></div>
+        </div>
+        <div class="subsection"><div class="subhead"><div><h4 data-i18n="gradientTitle">CSS-градиент</h4><p data-i18n="gradientDesc">Настройте два цвета и угол.</p></div></div><div class="gradient-controls"><label><span data-i18n="startColor">Цвет 1</span><input id="gradientA" type="color" value="#6c63ff"></label><label><span data-i18n="endColor">Цвет 2</span><input id="gradientB" type="color" value="#00d4ff"></label><label class="angle-control"><span data-i18n="angle">Угол</span><input id="gradientAngle" type="range" min="0" max="360" value="135"><output id="angleValue">135°</output></label></div><div id="gradientPreview" class="gradient-preview"></div><div class="button-row"><button id="copyGradient" class="primary-btn" type="button" data-i18n="copyCss">Копировать CSS</button><button id="randomColor" class="secondary-btn" type="button" data-i18n="randomColor">Случайный цвет</button></div><textarea id="gradientCss" class="code-area small-code" readonly></textarea></div>
+      </section>
+
+      <!-- Formatter -->
+      <section class="tool-panel" id="panel-format" data-panel="format">
+        <div class="panel-intro"><div><h3 data-i18n="formatTitle">Форматирование кода</h3><p data-i18n="formatDesc">Отформатируйте HTML, CSS или JavaScript с отступами.</p></div><span class="chip">CODE</span></div>
+        <div class="field-row"><label for="formatType" data-i18n="language">ЯЗЫК</label><select id="formatType" class="select-input"><option value="html">HTML</option><option value="css">CSS</option><option value="js">JavaScript (базовый)</option></select></div>
+        <label for="formatInput" data-i18n="codeInput">КОД ДЛЯ ФОРМАТИРОВАНИЯ</label><textarea id="formatInput" class="code-area tall" spellcheck="false" placeholder="<div><h1>Hello</h1><p>World</p></div>"></textarea>
+        <div class="button-row"><button id="formatRun" class="primary-btn" type="button" data-i18n="formatCode">Форматировать код</button><button id="formatClear" class="text-btn" type="button" data-i18n="clear">Очистить</button></div>
+        <div id="formatStatus" class="status-box" aria-live="polite"></div><label for="formatOutput" data-i18n="result">РЕЗУЛЬТАТ</label><textarea id="formatOutput" class="code-area tall output-area" readonly spellcheck="false"></textarea><div class="button-row"><button id="formatCopy" class="secondary-btn" type="button" data-i18n="copyResult">Копировать результат</button></div>
+        <p class="hint" data-i18n="formatHint">Примечание: встроенный форматтер использует эвристики, а не полноценный парсер. Для сложного JavaScript применяйте специализированный линтер.</p>
+      </section>
+
+      <!-- Password -->
+      <section class="tool-panel" id="panel-password" data-panel="password">
+        <div class="panel-intro"><div><h3 data-i18n="passwordTitle">Генератор паролей</h3><p data-i18n="passwordDesc">Случайные пароли с помощью криптографического генератора браузера.</p></div><span class="chip">SECURE RNG</span></div>
+        <div class="password-result"><input id="passwordOutput" class="password-output mono" readonly aria-label="Generated password" placeholder="Нажмите «Сгенерировать»"><button id="passwordCopy" class="icon-btn" type="button" aria-label="Copy password">⧉</button></div>
+        <div class="range-row"><label for="passwordLength" data-i18n="length">ДЛИНА ПАРОЛЯ</label><strong id="lengthValue">20</strong></div><input id="passwordLength" class="range-input" type="range" min="8" max="64" value="20">
+        <div class="check-grid"><label><input id="pwLower" type="checkbox" checked> <span data-i18n="lowercase">Строчные буквы (a–z)</span></label><label><input id="pwUpper" type="checkbox" checked> <span data-i18n="uppercase">Заглавные буквы (A–Z)</span></label><label><input id="pwNumbers" type="checkbox" checked> <span data-i18n="numbers">Цифры (0–9)</span></label><label><input id="pwSymbols" type="checkbox" checked> <span data-i18n="symbols">Символы (!@#$…)</span></label></div>
+        <div class="button-row"><button id="generatePassword" class="primary-btn" type="button" data-i18n="generate">Сгенерировать пароль</button><button id="passwordClear" class="secondary-btn" type="button" data-i18n="clear">Очистить</button></div><div id="passwordStatus" class="status-box" aria-live="polite"></div>
+        <p class="hint" data-i18n="passwordHint">Пароль генерируется в этом браузере. Не отправляйте его никому и не сохраняйте на общедоступном устройстве.</p>
+      </section>
+
+      <!-- Base64 -->
+      <section class="tool-panel" id="panel-base64" data-panel="base64">
+        <div class="panel-intro"><div><h3 data-i18n="base64Title">Кодирование Base64</h3><p data-i18n="base64Desc">Преобразуйте текст в Base64 или декодируйте строку обратно.</p></div><span class="chip">BASE64</span></div>
+        <label for="base64Input" data-i18n="base64InputLabel">ТЕКСТ ИЛИ BASE64</label><textarea id="base64Input" class="code-area" spellcheck="false" placeholder="Hello, world!"></textarea>
+        <div class="button-row"><button id="base64Encode" class="primary-btn" type="button" data-i18n="encode">Закодировать</button><button id="base64Decode" class="secondary-btn" type="button" data-i18n="decode">Декодировать</button><button id="base64Clear" class="text-btn" type="button" data-i18n="clear">Очистить</button></div>
+        <div id="base64Status" class="status-box" aria-live="polite"></div><label for="base64Output" data-i18n="result">РЕЗУЛЬТАТ</label><textarea id="base64Output" class="code-area output-area" readonly spellcheck="false"></textarea><div class="button-row"><button id="base64Copy" class="secondary-btn" type="button" data-i18n="copyResult">Копировать результат</button></div>
+        <p class="hint" data-i18n="base64Hint">Base64 — это кодирование, а не шифрование. Не используйте его для защиты секретных данных.</p>
+      </section>
+
+      <!-- QR -->
+      <section class="tool-panel" id="panel-qr" data-panel="qr">
+        <div class="panel-intro"><div><h3 data-i18n="qrTitle">Генератор QR-кодов</h3><p data-i18n="qrDesc">Создайте QR-код для ссылки, текста или Wi-Fi-инструкции.</p></div><span class="chip">QR</span></div>
+        <label for="qrInput" data-i18n="qrContent">СОДЕРЖИМОЕ QR-КОДА</label><textarea id="qrInput" class="code-area qr-input" spellcheck="false" placeholder="https://example.com"></textarea>
+        <div class="field-row"><label for="qrSize" data-i18n="qrSize">РАЗМЕР</label><select id="qrSize" class="select-input"><option value="160">160 × 160</option><option value="220" selected>220 × 220</option><option value="300">300 × 300</option></select></div>
+        <div class="button-row"><button id="qrGenerate" class="primary-btn" type="button" data-i18n="generateQr">Создать QR-код</button><button id="qrClear" class="text-btn" type="button" data-i18n="clear">Очистить</button></div>
+        <div id="qrStatus" class="status-box" aria-live="polite"></div><div class="qr-result"><div id="qrOutput" class="qr-output"><span data-i18n="qrEmpty">QR-код появится здесь</span></div><button id="qrDownload" class="secondary-btn" type="button" disabled data-i18n="downloadQr">Скачать PNG</button></div>
+        <p class="hint" data-i18n="qrHint">Для генерации QR требуется загрузить небольшую библиотеку с CDN. Остальные инструменты работают без сторонних библиотек.</p>
+      </section>
+
+      <footer class="main-footer"><span>© <span id="year"></span> DevKit</span><span data-i18n="footerText">Создано для разработчиков. Без аккаунтов и лишнего шума.</span><a href="https://github.com/" target="_blank" rel="noreferrer" data-i18n="githubLink">GitHub Pages ready ↗</a></footer>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
