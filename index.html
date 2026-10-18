@@ -6,9 +6,12 @@
   <meta name="theme-color" content="#080b16">
   <meta name="description" content="DevKit — бесплатные инструменты разработчика: JSON, цвета, форматирование кода, пароли, Base64 и QR-коды.">
   <title>DevKit — Developer Toolkit</title>
-  <link rel="stylesheet" href="assets/style.css">
-  <script defer src="assets/app.js"></script>
-  <!-- QR generation uses a small open-source library from CDN; all other tools work offline after download. -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+    :root{color-scheme:dark;--bg:#080b16;--panel:#101525;--panel2:#0c1120;--line:#202944;--text:#edf2ff;--muted:#8b96b5;--blue:#5b8cff;--cyan:#00d4ff;--purple:#8b5cf6;--green:#46e6b1;--red:#ff6b8a;--radius:18px;--mono:"DM Mono",monospace;--sans:"Manrope",system-ui,sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;overflow-x:hidden}button,input,textarea,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}.ambient{position:fixed;pointer-events:none;filter:blur(90px);opacity:.16;border-radius:50%;z-index:-1}.ambient-a{width:400px;height:400px;background:#2859ff;top:-150px;left:25%}.ambient-b{width:360px;height:360px;background:#8b32ff;bottom:0;right:-120px}.topbar{height:82px;border-bottom:1px solid rgba(116,139,190,.15);display:flex;align-items:center;justify-content:space-between;padding:0 4.5%;background:rgba(8,11,22,.75);backdrop-filter:blur(18px);position:sticky;top:0;z-index:20}.brand{display:flex;gap:12px;align-items:center;color:var(--text);text-decoration:none;font-weight:800;letter-spacing:-.6px;font-size:20px}.brand-mark{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,#557cff,#8c4dff);box-shadow:0 5px 25px #536dff45;font-family:var(--mono);font-size:15px}.brand-mark span{color:#9ef3ff}.brand small{display:block;font-size:8px;letter-spacing:2px;color:#7483a8;font-weight:600;margin-top:2px}.accent{color:#7ba4ff}.top-actions{display:flex;align-items:center;gap:18px}.local-pill{font-size:11px;color:#9ca9c9;border:1px solid var(--line);border-radius:30px;padding:8px 12px;display:flex;align-items:center;gap:8px}.local-pill i,.tool-status span:first-child{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 12px #46e6b1;display:inline-block}.ghost-btn{border:1px solid #2a3655;color:#c5d3f5;background:#101729;border-radius:10px;padding:8px 13px;font-family:var(--mono);font-size:12px}.layout{max-width:1500px;margin:auto;display:grid;grid-template-columns:248px minmax(0,1fr);min-height:calc(100vh - 82px)}.sidebar{border-right:1px solid rgba(116,139,190,.15);padding:32px 17px 20px;display:flex;flex-direction:column;position:relative}.side-heading,.section-kicker,.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:1.6px;color:#7888ae}.side-heading{padding:0 12px 18px}.tool-nav{display:grid;gap:7px}.nav-item{display:flex;align-items:center;gap:12px;border:1px solid transparent;background:transparent;color:#8e9bbb;padding:12px 11px;border-radius:12px;text-align:left;font-size:12px;transition:.2s}.nav-item:hover{background:#121a2d;color:#dfe8ff}.nav-item.active{background:linear-gradient(100deg,#1b2850,#191b3b);border-color:#34467b;color:#eef2ff;box-shadow:inset 3px 0 #688bff}.nav-icon{font-family:var(--mono);color:#8b9dff;font-size:14px;width:22px;text-align:center}.nav-item kbd{margin-left:auto;color:#526083;font:10px var(--mono)}.sidebar-note{display:flex;gap:11px;margin:32px 4px 20px;padding:14px 12px;border:1px solid #202e42;border-radius:12px;background:#0c1421}.pulse{width:7px;height:7px;flex:none;margin-top:5px;border-radius:50%;background:var(--green);box-shadow:0 0 10px #46e6b1}.sidebar-note strong{font-size:11px;color:#cbd6f0}.sidebar-note p{font-size:10px;line-height:1.6;color:#7583a3;margin:5px 0 0}.sidebar-footer{margin-top:auto;border-top:1px solid #1b2440;padding:18px 10px 0;color:#637197;font:10px var(--mono);letter-spacing:1px}.sidebar-footer span{float:right;color:#475473}.content{padding:44px clamp(22px,4.5vw,68px) 24px;min-width:0}.welcome-row{display:flex;align-items:center;justify-content:space-between;gap:30px;min-height:195px;margin-bottom:36px}.eyebrow{display:flex;align-items:center;gap:10px}.eyebrow-line{width:23px;height:1px;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}h1{font-size:clamp(34px,4vw,54px);letter-spacing:-2.6px;line-height:1.12;margin:18px 0 13px;font-weight:800}h1 span{background:linear-gradient(90deg,#6d9aff,#b68cff);background-clip:text;-webkit-background-clip:text;color:transparent}.subtitle{font-size:13px;color:#929fbe;line-height:1.8;max-width:540px;margin:0}.hero-orb{width:158px;height:158px;flex:none;position:relative;display:grid;place-items:center}.orb-ring{position:absolute;border:1px solid #587bff45;border-radius:50%;inset:7px;transform:rotate(-28deg) scaleY(.64)}.ring-two{inset:23px;border-color:#9b65ff66;transform:rotate(45deg) scaleY(.65)}.orb-core{width:76px;height:76px;display:grid;place-items:center;border-radius:24px;background:linear-gradient(145deg,#182a56,#1b1641);border:1px solid #4e62b5;box-shadow:0 0 45px #566cff2a;font:700 22px var(--mono);color:#dce6ff;transform:rotate(-8deg)}.orb-core span{color:var(--cyan)}.orb-dot{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 15px var(--cyan)}.dot-one{top:19px;right:31px}.dot-two{bottom:28px;left:15px;background:#ae7cff}.tool-heading{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #1c2641;padding-top:25px;margin-bottom:18px}.section-kicker{font-size:9px;color:#6c7ca2}.tool-heading h2{margin:7px 0 0;font-size:21px;letter-spacing:-.5px}.tool-status{display:flex;align-items:center;gap:8px;font:9px var(--mono);letter-spacing:.8px;color:#7c91b6}.tool-panel{display:none;background:linear-gradient(145deg,rgba(17,24,42,.98),rgba(12,17,31,.98));border:1px solid #202b47;border-radius:var(--radius);padding:clamp(18px,3vw,30px);box-shadow:0 20px 60px #00000012}.tool-panel.active{display:block;animation:fadein .22s ease}@keyframes fadein{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}.panel-intro{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:24px}.panel-intro h3{font-size:17px;margin:0 0 7px;letter-spacing:-.4px}.panel-intro p{font-size:12px;color:#8794b4;line-height:1.7;margin:0}.chip{font:10px var(--mono);color:#8fb2ff;border:1px solid #2b4275;background:#14203b;border-radius:7px;padding:7px 9px;white-space:nowrap}label{display:block;font:10px var(--mono);letter-spacing:1px;color:#7f8eaf;margin-bottom:10px}textarea,input,select{color:#e5ecff}textarea{resize:vertical}.code-area{display:block;width:100%;min-height:145px;border:1px solid #263351;border-radius:12px;background:#090e1a;padding:15px;color:#b9d7ff;font:12px/1.75 var(--mono);outline:none;tab-size:2;transition:border .2s}.code-area:focus,.text-input:focus,.select-input:focus{border-color:#627fff}.output-area{background:#0b1420;color:#a4edda}.button-row{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:14px 0 20px}.primary-btn,.secondary-btn,.text-btn{border-radius:9px;padding:10px 14px;font-size:11px;font-weight:700;transition:.2s}.primary-btn{border:1px solid #7590ff;background:linear-gradient(105deg,#557aff,#7754e8);color:white;box-shadow:0 5px 18px #596bff25}.primary-btn:hover{filter:brightness(1.13);transform:translateY(-1px)}.secondary-btn{border:1px solid #2d3b5d;background:#141d31;color:#c4d1f2}.secondary-btn:hover{border-color:#5873ba;background:#1a2640}.text-btn{border:1px solid transparent;background:transparent;color:#7e8caf}.text-btn:hover{color:#c3d0ef}.status-box{display:none;border-radius:9px;padding:10px 12px;font-size:11px;margin:12px 0 18px;line-height:1.6}.status-box.show{display:block}.status-box.ok{background:#102a28;border:1px solid #22564e;color:#82e8c7}.status-box.error{background:#2c1825;border:1px solid #65334a;color:#ff9bb2}.status-box.info{background:#15233b;border:1px solid #2d4a79;color:#9fc4ff}.color-layout{display:grid;grid-template-columns:1.05fr 1fr;gap:20px}.color-preview{min-height:220px;border-radius:14px;background:#6c63ff;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;gap:7px;box-shadow:inset 0 0 0 1px #ffffff1c}.color-preview span{font:9px var(--mono);letter-spacing:1.6px;color:#ffffffb8}.color-preview strong{font:700 25px var(--mono);color:white;text-shadow:0 2px 15px #0005}.color-controls{background:#0b1120;border:1px solid #202c48;border-radius:13px;padding:17px}.color-picker-row{display:flex;gap:10px;align-items:center;margin-bottom:19px}.color-picker-row input[type=color],.gradient-controls input[type=color]{height:42px;width:52px;border:1px solid #34415e;background:#121a2c;border-radius:8px;padding:4px;cursor:pointer}.text-input,.select-input{background:#0a1020;border:1px solid #263351;border-radius:8px;padding:11px 12px;min-width:0}.text-input{width:100%;font-size:12px}.mono{font-family:var(--mono)}.value-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}.value-grid label{font-size:9px;margin-bottom:7px}.value-copy{display:flex;justify-content:space-between;align-items:center;gap:4px;padding:9px 8px;background:#111a2b;border-radius:8px;min-width:0}.value-copy code{font:10px var(--mono);color:#b5c6ee;overflow:hidden;text-overflow:ellipsis}.mini-copy{border:0;background:none;color:#8597c2;padding:2px}.full-btn{width:100%}.subsection{border-top:1px solid #222d49;margin-top:27px;padding-top:23px}.subhead h4{margin:0 0 6px;font-size:14px}.subhead p{margin:0 0 18px;color:#8593b3;font-size:11px}.gradient-controls{display:flex;gap:22px;flex-wrap:wrap;align-items:center}.gradient-controls label{display:flex;align-items:center;gap:10px;margin:0}.gradient-controls label span{letter-spacing:0}.angle-control{flex:1;min-width:150px}.angle-control input{min-width:60px;flex:1;accent-color:#7a8fff}.angle-control output{font:10px var(--mono);color:#b9c8ed}.gradient-preview{height:90px;border:1px solid #ffffff18;border-radius:12px;margin:18px 0 0;background:linear-gradient(135deg,#6c63ff,#00d4ff)}.small-code{min-height:65px;margin-top:12px}.field-row{display:flex;align-items:center;gap:16px;margin-bottom:16px}.field-row label{margin:0;min-width:100px}.select-input{min-width:160px;font-size:11px}.tall{min-height:210px}.hint{font-size:10px;line-height:1.8;color:#7583a5;margin:17px 0 0}.password-result{display:flex;gap:10px;margin:20px 0 24px}.password-output{width:100%;min-width:0;background:#080e1a;border:1px solid #2b395b;border-radius:11px;padding:17px 14px;font-size:14px;color:#a9e9d7}.icon-btn{width:50px;flex:none;border:1px solid #34456d;background:#18223b;border-radius:11px;color:#d0dcff;font-size:18px}.range-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.range-row label{margin:0}.range-row strong{font:12px var(--mono);color:#a9baff}.range-input{width:100%;accent-color:#7b85ff;margin:8px 0 23px}.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:23px}.check-grid label{display:flex;align-items:center;gap:8px;font:11px var(--sans);letter-spacing:0;color:#a8b5d3;margin:0}.check-grid input{accent-color:#7b85ff}.qr-input{min-height:100px}.qr-result{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:18px}.qr-output{min-width:220px;min-height:220px;border:1px dashed #33415f;border-radius:12px;background:#0b1120;display:grid;place-items:center;padding:10px;color:#7483a5;font-size:11px}.qr-output canvas,.qr-output img{max-width:100%;height:auto!important;image-rendering:pixelated}.qr-output:has(canvas),.qr-output:has(img){background:#fff;border-style:solid}.main-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:27px 2px 8px;color:#647293;font-size:10px}.main-footer a{color:#809cff;text-decoration:none}.toast{position:fixed;bottom:24px;right:24px;background:#18233b;border:1px solid #3b4e79;border-radius:10px;padding:12px 16px;color:#e0e9ff;font-size:12px;box-shadow:0 12px 40px #0008;opacity:0;transform:translateY(10px);pointer-events:none;transition:.22s;z-index:99;max-width:calc(100vw - 32px)}.toast.show{opacity:1;transform:translateY(0)}
+    @media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{border-right:0;border-bottom:1px solid #1c2641;padding:12px 18px}.side-heading,.sidebar-note,.sidebar-footer{display:none}.tool-nav{display:flex;overflow-x:auto;gap:7px;padding:1px 0 3px}.nav-item{white-space:nowrap;flex:none;padding:10px}.nav-item kbd{display:none}.content{padding-top:28px}.welcome-row{min-height:160px}.hero-orb{width:120px;height:120px}.orb-core{width:62px;height:62px;border-radius:20px;font-size:18px}}@media(max-width:620px){.topbar{height:70px;padding:0 16px}.brand{font-size:18px}.brand-mark{width:38px;height:38px}.local-pill{display:none}.layout{min-height:calc(100vh - 70px)}.sidebar{padding:10px 12px}.nav-item{font-size:11px;gap:8px;padding:10px}.nav-icon{width:18px}.content{padding:26px 14px 18px}.welcome-row{min-height:0;margin-bottom:27px}.hero-orb{display:none}h1{font-size:39px;letter-spacing:-1.8px;margin-top:15px}.subtitle{font-size:12px}.tool-heading{padding-top:20px}.tool-heading h2{font-size:19px}.tool-status{font-size:8px;letter-spacing:0}.tool-panel{padding:17px 14px;border-radius:14px}.panel-intro h3{font-size:15px}.panel-intro p{font-size:11px}.chip{font-size:9px;padding:6px}.code-area{font-size:11px;min-height:130px;padding:12px}.button-row{gap:7px}.primary-btn,.secondary-btn,.text-btn{padding:10px 11px;font-size:10px}.color-layout{grid-template-columns:1fr}.color-preview{min-height:145px}.color-controls{padding:14px}.gradient-controls{gap:13px}.gradient-controls label{gap:7px}.angle-control{flex-basis:100%}.value-grid{gap:7px}.value-copy{padding:8px 6px}.value-copy code{font-size:9px}.check-grid{gap:13px 8px}.check-grid label{font-size:10px}.qr-output{min-width:180px;min-height:180px}.qr-result{gap:12px}.main-footer{font-size:9px}.field-row{gap:10px}.field-row label{min-width:90px}}
+  </style>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
@@ -108,5 +111,609 @@
     </section>
   </main>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function() {
+      // --- Translations ---
+      const translations = {
+        ru: {
+          localBadge: "Работает в браузере",
+          workspace: "РАБОЧЕЕ ПРОСТРАНСТВО",
+          navJson: "JSON Studio",
+          navColors: "Color Lab",
+          navFormat: "Code Formatter",
+          navPassword: "Password Lab",
+          navBase64: "Base64 Studio",
+          navQr: "QR Generator",
+          privateTitle: "Локальная обработка",
+          privateText: "Ваш текст не отправляется на сервер.",
+          eyebrow: "ИНСТРУМЕНТЫ ДЛЯ РАЗРАБОТЧИКОВ",
+          headline: "Меньше рутины.<br><span>Больше кода.</span>",
+          subtitle: "Шесть полезных инструментов. Один рабочий стол. Без регистрации и лишних шагов.",
+          activeTool: "АКТИВНЫЙ ИНСТРУМЕНТ",
+          ready: "ГОТОВ К РАБОТЕ",
+          jsonTitle: "Проверка и форматирование JSON",
+          jsonDesc: "Проверьте синтаксис, сделайте структуру читаемой или сожмите её.",
+          inputJson: "ВХОДНЫЕ ДАННЫЕ",
+          jsonPlaceholder: '{"name":"DevKit","active":true,"tools":["json","colors"]}',
+          pretty: "Форматировать",
+          minify: "Сжать",
+          validate: "Проверить",
+          clear: "Очистить",
+          result: "РЕЗУЛЬТАТ",
+          copyResult: "Копировать результат",
+          colorsTitle: "Цветовая лаборатория",
+          colorsDesc: "Подберите цвет, скопируйте значения и создайте CSS-градиент.",
+          livePreview: "ПРЕДПРОСМОТР",
+          chooseColor: "ВЫБРАТЬ ЦВЕТ",
+          copyHex: "Копировать HEX",
+          gradientTitle: "CSS-градиент",
+          gradientDesc: "Настройте два цвета и угол.",
+          startColor: "Цвет 1",
+          endColor: "Цвет 2",
+          angle: "Угол",
+          copyCss: "Копировать CSS",
+          randomColor: "Случайный цвет",
+          formatTitle: "Форматирование кода",
+          formatDesc: "Отформатируйте HTML, CSS или JavaScript с отступами.",
+          language: "ЯЗЫК",
+          codeInput: "КОД ДЛЯ ФОРМАТИРОВАНИЯ",
+          formatCode: "Форматировать код",
+          formatHint: "Примечание: встроенный форматтер использует эвристики, а не полноценный парсер. Для сложного JavaScript применяйте специализированный линтер.",
+          passwordTitle: "Генератор паролей",
+          passwordDesc: "Случайные пароли с помощью криптографического генератора браузера.",
+          length: "ДЛИНА ПАРОЛЯ",
+          lowercase: "Строчные буквы (a–z)",
+          uppercase: "Заглавные буквы (A–Z)",
+          numbers: "Цифры (0–9)",
+          symbols: "Символы (!@#$…)",
+          generate: "Сгенерировать пароль",
+          passwordHint: "Пароль генерируется в этом браузере. Не отправляйте его никому и не сохраняйте на общедоступном устройстве.",
+          base64Title: "Кодирование Base64",
+          base64Desc: "Преобразуйте текст в Base64 или декодируйте строку обратно.",
+          base64InputLabel: "ТЕКСТ ИЛИ BASE64",
+          encode: "Закодировать",
+          decode: "Декодировать",
+          base64Hint: "Base64 — это кодирование, а не шифрование. Не используйте его для защиты секретных данных.",
+          qrTitle: "Генератор QR-кодов",
+          qrDesc: "Создайте QR-код для ссылки, текста или Wi-Fi-инструкции.",
+          qrContent: "СОДЕРЖИМОЕ QR-КОДА",
+          qrSize: "РАЗМЕР",
+          generateQr: "Создать QR-код",
+          qrEmpty: "QR-код появится здесь",
+          downloadQr: "Скачать PNG",
+          qrHint: "Для генерации QR требуется загрузить небольшую библиотеку с CDN. Остальные инструменты работают без сторонних библиотек.",
+          footerText: "Создано для разработчиков. Без аккаунтов и лишнего шума.",
+          githubLink: "GitHub Pages ready ↗",
+          // status / messages
+          jsonValid: "✅ JSON корректен.",
+          jsonInvalid: "❌ Ошибка: ",
+          copied: "Скопировано в буфер обмена",
+          invalidHex: "Неверный HEX-код. Используйте #RRGGBB.",
+          passwordGenerated: "Пароль сгенерирован.",
+          noPasswordChars: "Выберите хотя бы один набор символов.",
+          base64Encoded: "Закодировано в Base64.",
+          base64Decoded: "Декодировано из Base64.",
+          base64Error: "Ошибка декодирования: неверный Base64.",
+          qrGenerated: "QR-код создан.",
+          qrEmptyInput: "Введите текст или ссылку для QR-кода.",
+          qrLibMissing: "Библиотека QR не загружена. Проверьте соединение.",
+          formatEmpty: "Введите код для форматирования.",
+          formatDone: "Код отформатирован.",
+          formatError: "Ошибка форматирования.",
+          languageChanged: "Язык изменён"
+        },
+        en: {
+          localBadge: "Works in browser",
+          workspace: "WORKSPACE",
+          navJson: "JSON Studio",
+          navColors: "Color Lab",
+          navFormat: "Code Formatter",
+          navPassword: "Password Lab",
+          navBase64: "Base64 Studio",
+          navQr: "QR Generator",
+          privateTitle: "Local processing",
+          privateText: "Your text never leaves the server.",
+          eyebrow: "DEVELOPER TOOLS",
+          headline: "Less routine.<br><span>More code.</span>",
+          subtitle: "Six useful tools. One workspace. No sign-up or extra steps.",
+          activeTool: "ACTIVE TOOL",
+          ready: "READY",
+          jsonTitle: "JSON validation & formatting",
+          jsonDesc: "Check syntax, make the structure readable or minify it.",
+          inputJson: "INPUT",
+          jsonPlaceholder: '{"name":"DevKit","active":true,"tools":["json","colors"]}',
+          pretty: "Format",
+          minify: "Minify",
+          validate: "Validate",
+          clear: "Clear",
+          result: "RESULT",
+          copyResult: "Copy result",
+          colorsTitle: "Color Lab",
+          colorsDesc: "Pick a color, copy values and create a CSS gradient.",
+          livePreview: "PREVIEW",
+          chooseColor: "CHOOSE COLOR",
+          copyHex: "Copy HEX",
+          gradientTitle: "CSS gradient",
+          gradientDesc: "Adjust two colors and angle.",
+          startColor: "Color 1",
+          endColor: "Color 2",
+          angle: "Angle",
+          copyCss: "Copy CSS",
+          randomColor: "Random color",
+          formatTitle: "Code Formatter",
+          formatDesc: "Format HTML, CSS or JavaScript with indentation.",
+          language: "LANGUAGE",
+          codeInput: "CODE TO FORMAT",
+          formatCode: "Format code",
+          formatHint: "Note: the built-in formatter uses heuristics, not a full parser. For complex JavaScript use a dedicated linter.",
+          passwordTitle: "Password Generator",
+          passwordDesc: "Random passwords using the browser's cryptographic generator.",
+          length: "PASSWORD LENGTH",
+          lowercase: "Lowercase (a–z)",
+          uppercase: "Uppercase (A–Z)",
+          numbers: "Numbers (0–9)",
+          symbols: "Symbols (!@#$…)",
+          generate: "Generate password",
+          passwordHint: "Password is generated in this browser. Don't share it or save on a public device.",
+          base64Title: "Base64 Encoding",
+          base64Desc: "Convert text to Base64 or decode a string back.",
+          base64InputLabel: "TEXT OR BASE64",
+          encode: "Encode",
+          decode: "Decode",
+          base64Hint: "Base64 is encoding, not encryption. Don't use it to protect secrets.",
+          qrTitle: "QR Code Generator",
+          qrDesc: "Create a QR code for a link, text or Wi-Fi instructions.",
+          qrContent: "QR CONTENT",
+          qrSize: "SIZE",
+          generateQr: "Generate QR",
+          qrEmpty: "QR code will appear here",
+          downloadQr: "Download PNG",
+          qrHint: "QR generation requires a small CDN library. Other tools work without third-party libraries.",
+          footerText: "Built for developers. No accounts, no noise.",
+          githubLink: "GitHub Pages ready ↗",
+          jsonValid: "✅ JSON is valid.",
+          jsonInvalid: "❌ Error: ",
+          copied: "Copied to clipboard",
+          invalidHex: "Invalid HEX. Use #RRGGBB.",
+          passwordGenerated: "Password generated.",
+          noPasswordChars: "Select at least one character set.",
+          base64Encoded: "Encoded to Base64.",
+          base64Decoded: "Decoded from Base64.",
+          base64Error: "Decoding error: invalid Base64.",
+          qrGenerated: "QR code generated.",
+          qrEmptyInput: "Enter text or link for QR code.",
+          qrLibMissing: "QR library not loaded. Check connection.",
+          formatEmpty: "Enter code to format.",
+          formatDone: "Code formatted.",
+          formatError: "Formatting error.",
+          languageChanged: "Language changed"
+        }
+      };
+
+      let currentLang = 'ru';
+
+      function applyLanguage(lang) {
+        currentLang = lang;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.dataset.i18n;
+          if (translations[lang] && translations[lang][key] !== undefined) {
+            if (key === 'headline') {
+              el.innerHTML = translations[lang][key];
+            } else {
+              el.textContent = translations[lang][key];
+            }
+          }
+        });
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+          const key = el.dataset.i18nPlaceholder;
+          if (translations[lang] && translations[lang][key] !== undefined) {
+            el.placeholder = translations[lang][key];
+          }
+        });
+        document.documentElement.lang = lang;
+        document.getElementById('langToggle').textContent = lang === 'ru' ? 'EN' : 'RU';
+        // Update tool title if needed (stays as is, but panel titles use data-i18n)
+        // Also update tool headings in welcome? Already handled by data-i18n on elements.
+      }
+
+      // --- Tool switching ---
+      const navItems = document.querySelectorAll('.nav-item');
+      const panels = document.querySelectorAll('.tool-panel');
+      const toolTitle = document.getElementById('toolTitle');
+
+      function switchTool(toolId) {
+        navItems.forEach(btn => btn.classList.toggle('active', btn.dataset.tool === toolId));
+        panels.forEach(panel => panel.classList.toggle('active', panel.dataset.panel === toolId));
+        // Set tool title
+        const activeNav = document.querySelector(`.nav-item[data-tool="${toolId}"] span:not(.nav-icon)`);
+        if (activeNav) toolTitle.textContent = activeNav.textContent;
+      }
+
+      navItems.forEach(btn => {
+        btn.addEventListener('click', () => switchTool(btn.dataset.tool));
+      });
+
+      // --- Toast ---
+      const toast = document.getElementById('toast');
+      let toastTimeout;
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => toast.classList.remove('show'), 2500);
+      }
+
+      // --- Status boxes helper ---
+      function setStatus(el, message, type = 'ok') {
+        el.textContent = message;
+        el.className = 'status-box show ' + type;
+        setTimeout(() => { el.classList.remove('show'); }, 4000);
+      }
+
+      // --- Copy helper ---
+      async function copyText(text) {
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast(translations[currentLang].copied);
+        } catch {
+          showToast('Copy failed');
+        }
+      }
+
+      // --- Language toggle ---
+      document.getElementById('langToggle').addEventListener('click', () => {
+        const next = currentLang === 'ru' ? 'en' : 'ru';
+        applyLanguage(next);
+        // Re-set tool title based on active tool
+        const activeTool = document.querySelector('.nav-item.active')?.dataset.tool;
+        if (activeTool) {
+          const activeNavSpan = document.querySelector(`.nav-item[data-tool="${activeTool}"] span:not(.nav-icon)`);
+          if (activeNavSpan) toolTitle.textContent = activeNavSpan.textContent;
+        }
+      });
+
+      // --- Year ---
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // ========== JSON TOOL ==========
+      const jsonInput = document.getElementById('jsonInput');
+      const jsonOutput = document.getElementById('jsonOutput');
+      const jsonStatus = document.getElementById('jsonStatus');
+
+      document.getElementById('jsonPretty').addEventListener('click', () => {
+        try {
+          const obj = JSON.parse(jsonInput.value);
+          jsonOutput.value = JSON.stringify(obj, null, 2);
+          setStatus(jsonStatus, translations[currentLang].jsonValid, 'ok');
+        } catch (e) {
+          setStatus(jsonStatus, translations[currentLang].jsonInvalid + e.message, 'error');
+        }
+      });
+      document.getElementById('jsonMinify').addEventListener('click', () => {
+        try {
+          const obj = JSON.parse(jsonInput.value);
+          jsonOutput.value = JSON.stringify(obj);
+          setStatus(jsonStatus, translations[currentLang].jsonValid, 'ok');
+        } catch (e) {
+          setStatus(jsonStatus, translations[currentLang].jsonInvalid + e.message, 'error');
+        }
+      });
+      document.getElementById('jsonValidate').addEventListener('click', () => {
+        try {
+          JSON.parse(jsonInput.value);
+          setStatus(jsonStatus, translations[currentLang].jsonValid, 'ok');
+        } catch (e) {
+          setStatus(jsonStatus, translations[currentLang].jsonInvalid + e.message, 'error');
+        }
+      });
+      document.getElementById('jsonClear').addEventListener('click', () => {
+        jsonInput.value = '';
+        jsonOutput.value = '';
+        jsonStatus.classList.remove('show');
+      });
+      document.getElementById('jsonCopy').addEventListener('click', () => {
+        if (jsonOutput.value) copyText(jsonOutput.value);
+      });
+
+      // ========== COLOR TOOL ==========
+      const colorPicker = document.getElementById('colorPicker');
+      const hexInput = document.getElementById('hexInput');
+      const colorPreview = document.getElementById('colorPreview');
+      const hexLarge = document.getElementById('hexLarge');
+      const rgbValue = document.getElementById('rgbValue');
+      const hslValue = document.getElementById('hslValue');
+
+      function hexToRgb(hex) {
+        const v = hex.replace('#', '');
+        return [parseInt(v.substring(0,2),16), parseInt(v.substring(2,4),16), parseInt(v.substring(4,6),16)];
+      }
+      function rgbToHsl(r, g, b) {
+        r /= 255; g /= 255; b /= 255;
+        const max = Math.max(r,g,b), min = Math.min(r,g,b);
+        let h, s, l = (max+min)/2;
+        if (max === min) { h = s = 0; }
+        else {
+          const d = max - min;
+          s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+          switch(max) {
+            case r: h = ((g-b)/d + (g<b?6:0))/6; break;
+            case g: h = ((b-r)/d + 2)/6; break;
+            case b: h = ((r-g)/d + 4)/6; break;
+          }
+        }
+        h = Math.round(h*360); s = Math.round(s*100); l = Math.round(l*100);
+        return [h, s, l];
+      }
+      function updateColorDisplay(hex) {
+        const rgb = hexToRgb(hex);
+        const hsl = rgbToHsl(...rgb);
+        const hexUpper = hex.toUpperCase();
+        colorPreview.style.background = hex;
+        hexLarge.textContent = hexUpper;
+        rgbValue.textContent = rgb.join(', ');
+        hslValue.textContent = `${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%`;
+        colorPicker.value = hex.length === 7 ? hex : '#6c63ff';
+        hexInput.value = hexUpper;
+      }
+
+      colorPicker.addEventListener('input', () => {
+        updateColorDisplay(colorPicker.value);
+      });
+      hexInput.addEventListener('input', () => {
+        let v = hexInput.value.trim();
+        if (/^#[0-9A-Fa-f]{6}$/.test(v)) {
+          updateColorDisplay(v.toLowerCase());
+        }
+      });
+      hexInput.addEventListener('blur', () => {
+        let v = hexInput.value.trim();
+        if (!/^#[0-9A-Fa-f]{6}$/.test(v)) {
+          setStatus(jsonStatus, translations[currentLang].invalidHex, 'error'); // temporary reuse
+          hexInput.value = colorPicker.value.toUpperCase();
+        }
+      });
+      document.getElementById('copyHex').addEventListener('click', () => {
+        copyText(hexLarge.textContent);
+      });
+      document.querySelectorAll('.mini-copy').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const targetId = btn.dataset.copyTarget;
+          const target = document.getElementById(targetId);
+          if (target) copyText(target.textContent);
+        });
+      });
+
+      // Gradient
+      const gradientA = document.getElementById('gradientA');
+      const gradientB = document.getElementById('gradientB');
+      const gradientAngle = document.getElementById('gradientAngle');
+      const angleValue = document.getElementById('angleValue');
+      const gradientPreview = document.getElementById('gradientPreview');
+      const gradientCss = document.getElementById('gradientCss');
+
+      function updateGradient() {
+        const angle = gradientAngle.value;
+        const a = gradientA.value;
+        const b = gradientB.value;
+        const css = `linear-gradient(${angle}deg, ${a}, ${b})`;
+        gradientPreview.style.background = css;
+        gradientCss.value = `background: ${css};`;
+        angleValue.textContent = angle + '°';
+      }
+
+      [gradientA, gradientB, gradientAngle].forEach(el => el.addEventListener('input', updateGradient));
+      document.getElementById('copyGradient').addEventListener('click', () => {
+        copyText(gradientCss.value);
+      });
+      document.getElementById('randomColor').addEventListener('click', () => {
+        const randomHex = '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
+        updateColorDisplay(randomHex);
+      });
+
+      // ========== FORMATTER ==========
+      const formatInput = document.getElementById('formatInput');
+      const formatOutput = document.getElementById('formatOutput');
+      const formatType = document.getElementById('formatType');
+      const formatStatus = document.getElementById('formatStatus');
+
+      function simpleFormatHtml(code) {
+        let depth = 0;
+        const indent = '  ';
+        const lines = code.replace(/></g, '>\n<').split('\n');
+        return lines.map(line => {
+          line = line.trim();
+          if (line.startsWith('</')) depth = Math.max(0, depth - 1);
+          const formatted = indent.repeat(depth) + line;
+          if (line.startsWith('<') && !line.startsWith('</') && !line.endsWith('/>') && !line.includes('</')) depth++;
+          return formatted;
+        }).join('\n');
+      }
+
+      function simpleFormatCss(code) {
+        return code.replace(/\s*{\s*/g, ' {\n  ').replace(/;\s*/g, ';\n  ').replace(/\s*}\s*/g, '\n}\n').replace(/\n\s*\n/g, '\n').trim();
+      }
+
+      function simpleFormatJs(code) {
+        // Very basic: indent on {, }
+        const lines = code.replace(/{/g, '{\n').replace(/}/g, '\n}').replace(/;/g, ';\n').split('\n');
+        let depth = 0;
+        return lines.map(line => {
+          line = line.trim();
+          if (line.startsWith('}')) depth = Math.max(0, depth - 1);
+          const formatted = '  '.repeat(depth) + line;
+          if (line.endsWith('{')) depth++;
+          return formatted;
+        }).filter(l => l).join('\n');
+      }
+
+      document.getElementById('formatRun').addEventListener('click', () => {
+        const code = formatInput.value;
+        if (!code.trim()) {
+          setStatus(formatStatus, translations[currentLang].formatEmpty, 'info');
+          return;
+        }
+        try {
+          let result;
+          if (formatType.value === 'html') result = simpleFormatHtml(code);
+          else if (formatType.value === 'css') result = simpleFormatCss(code);
+          else result = simpleFormatJs(code);
+          formatOutput.value = result;
+          setStatus(formatStatus, translations[currentLang].formatDone, 'ok');
+        } catch (e) {
+          setStatus(formatStatus, translations[currentLang].formatError + ' ' + e.message, 'error');
+        }
+      });
+      document.getElementById('formatClear').addEventListener('click', () => {
+        formatInput.value = '';
+        formatOutput.value = '';
+        formatStatus.classList.remove('show');
+      });
+      document.getElementById('formatCopy').addEventListener('click', () => {
+        if (formatOutput.value) copyText(formatOutput.value);
+      });
+
+      // ========== PASSWORD ==========
+      const passwordOutput = document.getElementById('passwordOutput');
+      const passwordLength = document.getElementById('passwordLength');
+      const lengthValue = document.getElementById('lengthValue');
+      const passwordStatus = document.getElementById('passwordStatus');
+
+      passwordLength.addEventListener('input', () => {
+        lengthValue.textContent = passwordLength.value;
+      });
+
+      function generatePassword() {
+        const len = parseInt(passwordLength.value, 10);
+        const lower = 'abcdefghijklmnopqrstuvwxyz';
+        const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const numbers = '0123456789';
+        const symbols = '!@#$%^&*()_+~`|}{[]:;?><,./-=';
+        let chars = '';
+        if (document.getElementById('pwLower').checked) chars += lower;
+        if (document.getElementById('pwUpper').checked) chars += upper;
+        if (document.getElementById('pwNumbers').checked) chars += numbers;
+        if (document.getElementById('pwSymbols').checked) chars += symbols;
+        if (!chars) {
+          setStatus(passwordStatus, translations[currentLang].noPasswordChars, 'error');
+          return '';
+        }
+        const array = new Uint32Array(len);
+        crypto.getRandomValues(array);
+        let pwd = '';
+        for (let i = 0; i < len; i++) {
+          pwd += chars[array[i] % chars.length];
+        }
+        return pwd;
+      }
+
+      document.getElementById('generatePassword').addEventListener('click', () => {
+        const pwd = generatePassword();
+        if (pwd) {
+          passwordOutput.value = pwd;
+          setStatus(passwordStatus, translations[currentLang].passwordGenerated, 'ok');
+        }
+      });
+      document.getElementById('passwordClear').addEventListener('click', () => {
+        passwordOutput.value = '';
+        passwordStatus.classList.remove('show');
+      });
+      document.getElementById('passwordCopy').addEventListener('click', () => {
+        if (passwordOutput.value) copyText(passwordOutput.value);
+      });
+
+      // ========== BASE64 ==========
+      const base64Input = document.getElementById('base64Input');
+      const base64Output = document.getElementById('base64Output');
+      const base64Status = document.getElementById('base64Status');
+
+      document.getElementById('base64Encode').addEventListener('click', () => {
+        try {
+          const encoded = btoa(unescape(encodeURIComponent(base64Input.value)));
+          base64Output.value = encoded;
+          setStatus(base64Status, translations[currentLang].base64Encoded, 'ok');
+        } catch (e) {
+          setStatus(base64Status, 'Encoding error: ' + e.message, 'error');
+        }
+      });
+      document.getElementById('base64Decode').addEventListener('click', () => {
+        try {
+          const decoded = decodeURIComponent(escape(atob(base64Input.value.trim())));
+          base64Output.value = decoded;
+          setStatus(base64Status, translations[currentLang].base64Decoded, 'ok');
+        } catch (e) {
+          setStatus(base64Status, translations[currentLang].base64Error, 'error');
+        }
+      });
+      document.getElementById('base64Clear').addEventListener('click', () => {
+        base64Input.value = '';
+        base64Output.value = '';
+        base64Status.classList.remove('show');
+      });
+      document.getElementById('base64Copy').addEventListener('click', () => {
+        if (base64Output.value) copyText(base64Output.value);
+      });
+
+      // ========== QR ==========
+      const qrInput = document.getElementById('qrInput');
+      const qrSize = document.getElementById('qrSize');
+      const qrOutput = document.getElementById('qrOutput');
+      const qrStatus = document.getElementById('qrStatus');
+      const qrDownload = document.getElementById('qrDownload');
+
+      function generateQR() {
+        const content = qrInput.value.trim();
+        if (!content) {
+          setStatus(qrStatus, translations[currentLang].qrEmptyInput, 'info');
+          return;
+        }
+        if (typeof QRCode === 'undefined') {
+          setStatus(qrStatus, translations[currentLang].qrLibMissing, 'error');
+          return;
+        }
+        const size = parseInt(qrSize.value, 10);
+        qrOutput.innerHTML = '';
+        try {
+          new QRCode(qrOutput, {
+            text: content,
+            width: size,
+            height: size,
+            colorDark: '#000000',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H
+          });
+          qrDownload.disabled = false;
+          setStatus(qrStatus, translations[currentLang].qrGenerated, 'ok');
+        } catch (e) {
+          setStatus(qrStatus, 'QR error: ' + e.message, 'error');
+        }
+      }
+
+      document.getElementById('qrGenerate').addEventListener('click', generateQR);
+      document.getElementById('qrClear').addEventListener('click', () => {
+        qrInput.value = '';
+        qrOutput.innerHTML = '<span data-i18n="qrEmpty">' + (translations[currentLang].qrEmpty) + '</span>';
+        qrDownload.disabled = true;
+        qrStatus.classList.remove('show');
+      });
+      qrDownload.addEventListener('click', () => {
+        const canvas = qrOutput.querySelector('canvas');
+        const img = qrOutput.querySelector('img');
+        const source = canvas || img;
+        if (!source) return;
+        const link = document.createElement('a');
+        link.download = 'qrcode.png';
+        link.href = source.toDataURL ? source.toDataURL() : source.src;
+        link.click();
+      });
+
+      // Initialize default language & UI
+      applyLanguage('ru');
+      updateColorDisplay('#6c63ff');
+      updateGradient();
+      // Set default active panel title
+      switchTool('json');
+    })();
+  </script>
 </body>
 </html>
